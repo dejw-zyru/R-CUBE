@@ -1177,8 +1177,8 @@ LOAD d:/st/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi
  *(.rodata)
  *(.rodata*)
  .rodata.main.str1.4
-                0x08001a44        0xd build/main.o
- *fill*         0x08001a51        0x3 
+                0x08001a44        0xf build/main.o
+ *fill*         0x08001a53        0x1 
  .rodata.AHBPrescTable
                 0x08001a54       0x10 build/system_stm32l0xx.o
                 0x08001a54                AHBPrescTable

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\david\AppData\Local\Temp\cc2miwTK.s 			page 1
+ARM GAS  C:\Users\david\AppData\Local\Temp\cca52S0R.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\david\AppData\Local\Temp\cc2miwTK.s 			page 1
   30:Core/Src/gpio.c **** /*----------------------------------------------------------------------------*/
   31:Core/Src/gpio.c **** /* USER CODE BEGIN 1 */
   32:Core/Src/gpio.c **** 
-ARM GAS  C:\Users\david\AppData\Local\Temp\cc2miwTK.s 			page 2
+ARM GAS  C:\Users\david\AppData\Local\Temp\cca52S0R.s 			page 2
 
 
   33:Core/Src/gpio.c **** /* USER CODE END 1 */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\david\AppData\Local\Temp\cc2miwTK.s 			page 1
   50:Core/Src/gpio.c ****   /*Configure GPIO pin Output Level */
   51:Core/Src/gpio.c ****   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0|GPIO_PIN_1, GPIO_PIN_RESET);
   64              		.loc 1 51 3 view .LVU9
-ARM GAS  C:\Users\david\AppData\Local\Temp\cc2miwTK.s 			page 3
+ARM GAS  C:\Users\david\AppData\Local\Temp\cca52S0R.s 			page 3
 
 
   65 0020 A025     		movs	r5, #160
@@ -128,35 +128,36 @@ ARM GAS  C:\Users\david\AppData\Local\Temp\cc2miwTK.s 			page 1
   69 0028 2800     		movs	r0, r5
   70 002a FFF7FEFF 		bl	HAL_GPIO_WritePin
   71              	.LVL1:
-  52:Core/Src/gpio.c **** 
-  53:Core/Src/gpio.c ****   /*Configure GPIO pins : PA0 PA1 */
-  54:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
-  72              		.loc 1 54 3 view .LVU10
-  73              		.loc 1 54 23 is_stmt 0 view .LVU11
+  52:Core/Src/gpio.c ****   
+  53:Core/Src/gpio.c **** 
+  54:Core/Src/gpio.c ****   /*Configure GPIO pins : PA0 PA1 */
+  55:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
+  72              		.loc 1 55 3 view .LVU10
+  73              		.loc 1 55 23 is_stmt 0 view .LVU11
   74 002e 0323     		movs	r3, #3
   75 0030 0193     		str	r3, [sp, #4]
-  55:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  76              		.loc 1 55 3 is_stmt 1 view .LVU12
-  77              		.loc 1 55 24 is_stmt 0 view .LVU13
+  56:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  76              		.loc 1 56 3 is_stmt 1 view .LVU12
+  77              		.loc 1 56 24 is_stmt 0 view .LVU13
   78 0032 0294     		str	r4, [sp, #8]
-  56:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  79              		.loc 1 56 3 is_stmt 1 view .LVU14
-  80              		.loc 1 56 24 is_stmt 0 view .LVU15
+  57:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+  79              		.loc 1 57 3 is_stmt 1 view .LVU14
+  80              		.loc 1 57 24 is_stmt 0 view .LVU15
   81 0034 0023     		movs	r3, #0
   82 0036 0393     		str	r3, [sp, #12]
-  57:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  83              		.loc 1 57 3 is_stmt 1 view .LVU16
-  84              		.loc 1 57 25 is_stmt 0 view .LVU17
+  58:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  83              		.loc 1 58 3 is_stmt 1 view .LVU16
+  84              		.loc 1 58 25 is_stmt 0 view .LVU17
   85 0038 0493     		str	r3, [sp, #16]
-  58:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-  86              		.loc 1 58 3 is_stmt 1 view .LVU18
+  59:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  86              		.loc 1 59 3 is_stmt 1 view .LVU18
   87 003a 01A9     		add	r1, sp, #4
   88 003c 2800     		movs	r0, r5
   89 003e FFF7FEFF 		bl	HAL_GPIO_Init
   90              	.LVL2:
-  59:Core/Src/gpio.c **** 
-  60:Core/Src/gpio.c **** }
-  91              		.loc 1 60 1 is_stmt 0 view .LVU19
+  60:Core/Src/gpio.c **** 
+  61:Core/Src/gpio.c **** }
+  91              		.loc 1 61 1 is_stmt 0 view .LVU19
   92 0042 07B0     		add	sp, sp, #28
   93              		@ sp needed
   94 0044 30BD     		pop	{r4, r5, pc}
@@ -173,14 +174,14 @@ ARM GAS  C:\Users\david\AppData\Local\Temp\cc2miwTK.s 			page 1
  106              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l051xx.h"
  107              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio.h"
  108              		.file 6 "<built-in>"
-ARM GAS  C:\Users\david\AppData\Local\Temp\cc2miwTK.s 			page 4
+ARM GAS  C:\Users\david\AppData\Local\Temp\cca52S0R.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 gpio.c
-C:\Users\david\AppData\Local\Temp\cc2miwTK.s:18     .text.MX_GPIO_Init:00000000 $t
-C:\Users\david\AppData\Local\Temp\cc2miwTK.s:24     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-C:\Users\david\AppData\Local\Temp\cc2miwTK.s:98     .text.MX_GPIO_Init:00000048 $d
+C:\Users\david\AppData\Local\Temp\cca52S0R.s:18     .text.MX_GPIO_Init:00000000 $t
+C:\Users\david\AppData\Local\Temp\cca52S0R.s:24     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\david\AppData\Local\Temp\cca52S0R.s:98     .text.MX_GPIO_Init:00000048 $d
 
 UNDEFINED SYMBOLS
 memset
