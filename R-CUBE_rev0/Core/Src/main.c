@@ -43,6 +43,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+volatile uint32_t time_is_runing;
 
 /* USER CODE END PV */
 
@@ -98,7 +99,9 @@ int main(void)
     HAL_Delay(250);
     HAL_GPIO_TogglePin(LED_R_GPIO_Port,LED_R_Pin);
     HAL_Delay(150);
-    HAL_UART_Transmit(&huart2, "Hello world!\r\n", 14, HAL_MAX_DELAY);
+    //HAL_UART_Transmit(&huart2, "Hello world!\r\n", 14, HAL_MAX_DELAY);
+    printf_("Hello world! %d\n",time_is_runing);
+    time_is_runing++;
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
