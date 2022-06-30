@@ -97,7 +97,7 @@ int main(void)
     HAL_GPIO_TogglePin(LED_G_GPIO_Port,LED_G_Pin);
     HAL_Delay(250);
     HAL_GPIO_TogglePin(LED_R_GPIO_Port,LED_R_Pin);
-    HAL_Delay(300);
+    HAL_Delay(100);
     HAL_UART_Transmit(&huart2, "Hello world!\r\n", 14, HAL_MAX_DELAY);
     /* USER CODE END WHILE */
 

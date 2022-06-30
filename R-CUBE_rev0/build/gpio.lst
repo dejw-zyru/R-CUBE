@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\david\AppData\Local\Temp\cca52S0R.s 			page 1
+ARM GAS  C:\Users\david\AppData\Local\Temp\ccX5gXDc.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\david\AppData\Local\Temp\cca52S0R.s 			page 1
   30:Core/Src/gpio.c **** /*----------------------------------------------------------------------------*/
   31:Core/Src/gpio.c **** /* USER CODE BEGIN 1 */
   32:Core/Src/gpio.c **** 
-ARM GAS  C:\Users\david\AppData\Local\Temp\cca52S0R.s 			page 2
+ARM GAS  C:\Users\david\AppData\Local\Temp\ccX5gXDc.s 			page 2
 
 
   33:Core/Src/gpio.c **** /* USER CODE END 1 */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\david\AppData\Local\Temp\cca52S0R.s 			page 1
   50:Core/Src/gpio.c ****   /*Configure GPIO pin Output Level */
   51:Core/Src/gpio.c ****   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0|GPIO_PIN_1, GPIO_PIN_RESET);
   64              		.loc 1 51 3 view .LVU9
-ARM GAS  C:\Users\david\AppData\Local\Temp\cca52S0R.s 			page 3
+ARM GAS  C:\Users\david\AppData\Local\Temp\ccX5gXDc.s 			page 3
 
 
   65 0020 A025     		movs	r5, #160
@@ -174,14 +174,14 @@ ARM GAS  C:\Users\david\AppData\Local\Temp\cca52S0R.s 			page 1
  106              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l051xx.h"
  107              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio.h"
  108              		.file 6 "<built-in>"
-ARM GAS  C:\Users\david\AppData\Local\Temp\cca52S0R.s 			page 4
+ARM GAS  C:\Users\david\AppData\Local\Temp\ccX5gXDc.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 gpio.c
-C:\Users\david\AppData\Local\Temp\cca52S0R.s:18     .text.MX_GPIO_Init:00000000 $t
-C:\Users\david\AppData\Local\Temp\cca52S0R.s:24     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-C:\Users\david\AppData\Local\Temp\cca52S0R.s:98     .text.MX_GPIO_Init:00000048 $d
+C:\Users\david\AppData\Local\Temp\ccX5gXDc.s:18     .text.MX_GPIO_Init:00000000 $t
+C:\Users\david\AppData\Local\Temp\ccX5gXDc.s:24     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\david\AppData\Local\Temp\ccX5gXDc.s:98     .text.MX_GPIO_Init:00000048 $d
 
 UNDEFINED SYMBOLS
 memset

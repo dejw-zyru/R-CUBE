@@ -1337,20 +1337,20 @@ LOAD d:/st/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi
 LOAD d:/st/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libm.a
 LOAD d:/st/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp\libgcc.a
 
-.debug_info     0x00000000     0xa3f0
- .debug_info    0x00000000      0xc69 build/main.o
- .debug_info    0x00000c69      0x409 build/gpio.o
- .debug_info    0x00001072      0x103 build/stm32l0xx_it.o
- .debug_info    0x00001175      0x211 build/stm32l0xx_hal_msp.o
- .debug_info    0x00001386      0x9ed build/stm32l0xx_hal.o
- .debug_info    0x00001d73      0xd6f build/stm32l0xx_hal_rcc.o
- .debug_info    0x00002ae2      0x605 build/stm32l0xx_hal_rcc_ex.o
- .debug_info    0x000030e7      0x764 build/stm32l0xx_hal_gpio.o
- .debug_info    0x0000384b      0xaa9 build/stm32l0xx_hal_cortex.o
- .debug_info    0x000042f4      0x383 build/system_stm32l0xx.o
- .debug_info    0x00004677      0xaf0 build/usart.o
- .debug_info    0x00005167     0x5267 build/stm32l0xx_hal_uart.o
- .debug_info    0x0000a3ce       0x22 build/startup_stm32l051xx.o
+.debug_info     0x00000000     0xa3ef
+ .debug_info    0x00000000      0xc68 build/main.o
+ .debug_info    0x00000c68      0x409 build/gpio.o
+ .debug_info    0x00001071      0x103 build/stm32l0xx_it.o
+ .debug_info    0x00001174      0x211 build/stm32l0xx_hal_msp.o
+ .debug_info    0x00001385      0x9ed build/stm32l0xx_hal.o
+ .debug_info    0x00001d72      0xd6f build/stm32l0xx_hal_rcc.o
+ .debug_info    0x00002ae1      0x605 build/stm32l0xx_hal_rcc_ex.o
+ .debug_info    0x000030e6      0x764 build/stm32l0xx_hal_gpio.o
+ .debug_info    0x0000384a      0xaa9 build/stm32l0xx_hal_cortex.o
+ .debug_info    0x000042f3      0x383 build/system_stm32l0xx.o
+ .debug_info    0x00004676      0xaf0 build/usart.o
+ .debug_info    0x00005166     0x5267 build/stm32l0xx_hal_uart.o
+ .debug_info    0x0000a3cd       0x22 build/startup_stm32l051xx.o
 
 .debug_abbrev   0x00000000     0x16e1
  .debug_abbrev  0x00000000      0x21c build/main.o
