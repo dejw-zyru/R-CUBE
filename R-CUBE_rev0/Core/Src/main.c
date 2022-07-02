@@ -23,7 +23,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "printf.h"
+#include "stm32hpmlib.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -44,7 +45,7 @@
 
 /* USER CODE BEGIN PV */
 volatile uint32_t time_is_runing;
-
+int pm2,pm10,resultUartSet,resultStartMeasure,resultRead,resultStopMeasure;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -87,21 +88,34 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART2_UART_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  resultUartSet = hpmSetUart(&huart1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  resultStartMeasure = hpmStartParticleMeasurement();
+  HAL_Delay(100);
+  hpmStopAutoSend();
+ 
   while (1)
   {
+    HAL_Delay(5000);
     HAL_GPIO_TogglePin(LED_G_GPIO_Port,LED_G_Pin);
     HAL_Delay(250);
     HAL_GPIO_TogglePin(LED_R_GPIO_Port,LED_R_Pin);
-    HAL_Delay(150);
-    //HAL_UART_Transmit(&huart2, "Hello world!\r\n", 14, HAL_MAX_DELAY);
-    printf_("Hello world! %d\n",time_is_runing);
+    HAL_Delay(250);
+    
+
+    
+
+    
+    if(resultRead = hpmReadResults(&pm2,&pm10) != 0)
+      printf_("Counter %d result set uart: %d result set measure %d result read %d stop measure %d\n",time_is_runing, resultUartSet, resultStartMeasure, resultRead,resultStopMeasure);
+    printf_("PM2.5: %d PM10: %d\n",pm2,pm10);
     time_is_runing++;
+    
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -149,7 +163,8 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_USART2;
+  PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK2;
   PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
