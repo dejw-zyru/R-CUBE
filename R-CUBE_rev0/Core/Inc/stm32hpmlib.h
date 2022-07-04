@@ -24,6 +24,7 @@
 #ifndef HONEYWELL_HPM_PARTICLESENSOR_H_
 #define HONEYWELL_HPM_PARTICLESENSOR_H_
 
+extern int resultUartSet,resultStartMeasure;
 
 int hpmSetUart(UART_HandleTypeDef *huart);
 int hpmReadResults(int *pm25concentration, int *pm10concentration);
@@ -33,6 +34,7 @@ int hpmSetAdjustmentCooeff(int coeff);
 int hpmReadAdjustmentCooeff(int *coeff);
 int hpmStopAutoSend();
 int hpmEnableAutoSend();
+int hpmSetup();
 
 #define HPM_ERR_OK 0
 #define HPM_ERR_GENERAL -1

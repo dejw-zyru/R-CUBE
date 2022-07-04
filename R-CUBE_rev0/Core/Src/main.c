@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "printf.h"
 #include "stm32hpmlib.h"
+#include "stm32_tm1637.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -90,18 +91,24 @@ int main(void)
   MX_USART2_UART_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  resultUartSet = hpmSetUart(&huart1);
+
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  resultStartMeasure = hpmStartParticleMeasurement();
-  HAL_Delay(100);
-  hpmStopAutoSend();
- 
+  
+  
+  hpmSetup();
+  tm1637Init();
+  //tm1637SetBrightness(3);
+tm1637DisplayDecimal(123,0);
   while (1)
   {
-    HAL_Delay(5000);
+    
+    //tm1637DisplayDecimal(1234,0);
+    //HAL_Delay(20);
+    /*HAL_Delay(5000);
     HAL_GPIO_TogglePin(LED_G_GPIO_Port,LED_G_Pin);
     HAL_Delay(250);
     HAL_GPIO_TogglePin(LED_R_GPIO_Port,LED_R_Pin);
@@ -111,10 +118,10 @@ int main(void)
     
 
     
-    if(resultRead = hpmReadResults(&pm2,&pm10) != 0)
+    if( (resultRead = hpmReadResults(&pm2,&pm10)) != 0)
       printf_("Counter %d result set uart: %d result set measure %d result read %d stop measure %d\n",time_is_runing, resultUartSet, resultStartMeasure, resultRead,resultStopMeasure);
     printf_("PM2.5: %d PM10: %d\n",pm2,pm10);
-    time_is_runing++;
+    time_is_runing++;*/
     
     /* USER CODE END WHILE */
 

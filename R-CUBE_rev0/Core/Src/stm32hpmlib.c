@@ -25,6 +25,7 @@
 #include <string.h>
 #include "stm32l0xx_hal.h"
 #include "stm32hpmlib.h"
+#include "usart.h"
 
 #define HPM_CMD_HEADER 0x68
 
@@ -342,5 +343,18 @@ int hpmEnableAutoSend()
     default:
       return HPM_ERR_BAD_RESPONSE;
   }
+}
+
+int hpmSetup(){
+
+  resultUartSet = hpmSetUart(&huart1);
+  HAL_Delay(100);
+  
+  
+  hpmStopAutoSend();
+  HAL_Delay(100);
+  resultStartMeasure = hpmStartParticleMeasurement();
+
+  return 1;
 }
 
