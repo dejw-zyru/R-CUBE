@@ -100,24 +100,27 @@ int main(void)
   
   
   hpmSetup();
+  volatile uint32_t counter=0;
   tm1637Init();
-  //tm1637SetBrightness(3);
-tm1637DisplayDecimal(123,0);
+  tm1637SetBrightness(3);
+  tm1637DisplayDecimal(1234, 1);
   while (1)
   {
-    
+    // try display 00 test
     //tm1637DisplayDecimal(1234,0);
     //HAL_Delay(20);
-    /*HAL_Delay(5000);
+    //HAL_Delay(5000);
     HAL_GPIO_TogglePin(LED_G_GPIO_Port,LED_G_Pin);
     HAL_Delay(250);
     HAL_GPIO_TogglePin(LED_R_GPIO_Port,LED_R_Pin);
     HAL_Delay(250);
     
+    tm1637DisplayDecimal(counter, 0);
+	  counter++;
 
     
 
-    
+    /*
     if( (resultRead = hpmReadResults(&pm2,&pm10)) != 0)
       printf_("Counter %d result set uart: %d result set measure %d result read %d stop measure %d\n",time_is_runing, resultUartSet, resultStartMeasure, resultRead,resultStopMeasure);
     printf_("PM2.5: %d PM10: %d\n",pm2,pm10);

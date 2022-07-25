@@ -48,8 +48,8 @@ void tm1637Init(void)
 
 void tm1637DisplayDecimal(int v, int displaySeparator)
 {
-    unsigned char digitArr[4];
-    for (int i = 0; i < 4; ++i) {
+    unsigned char digitArr[3];
+    for (int i = 0; i < 3; ++i) {
         digitArr[i] = segmentMap[v % 10];
         if (i == 2 && displaySeparator) {
             digitArr[i] |= 1 << 7;
@@ -66,8 +66,8 @@ void tm1637DisplayDecimal(int v, int displaySeparator)
     _tm1637WriteByte(0xc0);
     _tm1637ReadResult();
 
-    for (int i = 0; i < 4; ++i) {
-        _tm1637WriteByte(digitArr[3 - i]);
+    for (int i = 0; i < 3; ++i) {
+        _tm1637WriteByte(digitArr[2 - i]);
         _tm1637ReadResult();
     }
 
