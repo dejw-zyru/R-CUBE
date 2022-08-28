@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "i2c.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -26,6 +27,7 @@
 #include "printf.h"
 #include "stm32hpmlib.h"
 #include "stm32_tm1637.h"
+#include "shtc1.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -35,6 +37,10 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
+//TEST_HPM        TEST_TMP1637          TEST_I2C_BME680
+#define TEST_I2C_SHTC1
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -90,6 +96,8 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   MX_USART1_UART_Init();
+  MX_I2C1_Init();
+  
   /* USER CODE BEGIN 2 */
 
   
@@ -98,33 +106,67 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   
-  
+  #ifdef TEST_HPM
   hpmSetup();
+  #endif
+  #ifdef TEST_TM1637
   volatile uint32_t counter=0;
   tm1637Init();
   tm1637SetBrightness(3);
   tm1637DisplayDecimal(1234, 1);
+  #endif
+
+  #ifdef TEST_I2C_SHTC1
+    HAL_GPIO_WritePin(EN_1V8_GPIO_Port,EN_1V8_Pin,GPIO_PIN_SET);
+    sensirion_i2c_init();
+
+    #endif
   while (1)
   {
-    // try display 00 test
-    //tm1637DisplayDecimal(1234,0);
-    //HAL_Delay(20);
-    //HAL_Delay(5000);
+    
     HAL_GPIO_TogglePin(LED_G_GPIO_Port,LED_G_Pin);
     HAL_Delay(250);
     HAL_GPIO_TogglePin(LED_R_GPIO_Port,LED_R_Pin);
     HAL_Delay(250);
+    #ifdef TEST_I2C_SHTC1
     
+    time_is_runing++;
+    printf_("Communication is working %d\n", time_is_runing);
+   
+
+	  int32_t temperature, humidity;
+	          /* Measure temperature and relative humidity and store into variables
+	           * temperature, humidity (each output multiplied by 1000).
+	           */
+	          int8_t ret = shtc1_measure_blocking_read(&temperature, &humidity);
+	          if (ret == STATUS_OK) {
+	              printf_("measured temperature: %0.1f degreeCelsius, "
+	                     "measured humidity: %0.1f percentRH\n",
+	                     temperature / 1000.0f, humidity / 1000.0f);
+	          } else {
+	              printf_("error reading measurement\n");
+	          }
+
+	          sensirion_sleep_usec(1000000);
+
+    #endif
+    
+    #ifdef TEST_TM1637
+
     tm1637DisplayDecimal(counter, 0);
 	  counter++;
 
+    #endif
     
 
-    /*
+    #ifdef TEST_HPM
+
     if( (resultRead = hpmReadResults(&pm2,&pm10)) != 0)
       printf_("Counter %d result set uart: %d result set measure %d result read %d stop measure %d\n",time_is_runing, resultUartSet, resultStartMeasure, resultRead,resultStopMeasure);
     printf_("PM2.5: %d PM10: %d\n",pm2,pm10);
-    time_is_runing++;*/
+    time_is_runing++;
+
+    #endif
     
     /* USER CODE END WHILE */
 
@@ -173,9 +215,11 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_USART2;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_USART2
+                              |RCC_PERIPHCLK_I2C1;
   PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK2;
   PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
+  PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
