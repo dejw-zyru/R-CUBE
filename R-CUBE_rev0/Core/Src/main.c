@@ -40,6 +40,8 @@
 
 //TEST_HPM        TEST_TMP1637          TEST_I2C_BME680
 #define TEST_I2C_SHTC1
+#define TEST_HPM
+#define TEST_TM1637
 
 /* USER CODE END PD */
 
@@ -53,6 +55,8 @@
 /* USER CODE BEGIN PV */
 volatile uint32_t time_is_runing;
 int pm2,pm10,resultUartSet,resultStartMeasure,resultRead,resultStopMeasure;
+int32_t temperature, humidity;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -106,9 +110,13 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   
+  
+  
+
   #ifdef TEST_HPM
   hpmSetup();
   #endif
+
   #ifdef TEST_TM1637
   volatile uint32_t counter=0;
   tm1637Init();
@@ -121,27 +129,28 @@ int main(void)
     sensirion_i2c_init();
 
     #endif
+    int32_t measurementValue[4];
   while (1)
   {
     
-    HAL_GPIO_TogglePin(LED_G_GPIO_Port,LED_G_Pin);
+    /*HAL_GPIO_TogglePin(LED_G_GPIO_Port,LED_G_Pin);
     HAL_Delay(250);
     HAL_GPIO_TogglePin(LED_R_GPIO_Port,LED_R_Pin);
-    HAL_Delay(250);
+    HAL_Delay(250);*/
     #ifdef TEST_I2C_SHTC1
     
-    time_is_runing++;
-    printf_("Communication is working %d\n", time_is_runing);
+    
+    //printf_("Communication is working %d\n", time_is_runing);
    
 
-	  int32_t temperature, humidity;
+	  
 	          /* Measure temperature and relative humidity and store into variables
 	           * temperature, humidity (each output multiplied by 1000).
 	           */
 	          int8_t ret = shtc1_measure_blocking_read(&temperature, &humidity);
 	          if (ret == STATUS_OK) {
 	              printf_("measured temperature: %0.1f degreeCelsius, "
-	                     "measured humidity: %0.1f percentRH\n",
+	                     "measured humidity: %0.1f percentRH\n\n",
 	                     temperature / 1000.0f, humidity / 1000.0f);
 	          } else {
 	              printf_("error reading measurement\n");
@@ -151,22 +160,49 @@ int main(void)
 
     #endif
     
-    #ifdef TEST_TM1637
+    
+    
 
-    tm1637DisplayDecimal(counter, 0);
-	  counter++;
+    #ifdef TEST_HPM
+    resultRead = hpmReadResults(&pm2,&pm10);  
+    if( resultRead == 0)
+      //printf_("Counter %d result set uart: %d result set measure %d result read %d stop measure %d\n",time_is_runing, resultUartSet, resultStartMeasure, resultRead,resultStopMeasure);
+    printf_("PM2.5: %d PM10: %d \n\n",pm2,pm10);
+    //}
+
+    #endif
+
+    measurementValue[0]=pm2;
+    measurementValue[1]=pm10;
+    measurementValue[2]=temperature/100;
+    measurementValue[3]=humidity/100;
+
+
+    #ifdef TEST_TM1637
+    
+    
+
+    (counter == 0) || (counter == 1) ? tm1637DisplayDecimal(measurementValue[counter], 0) : tm1637DisplayDecimal(measurementValue[counter], 1);
+
+    HAL_Delay(500);
+    
+
+    if( (time_is_runing%4) == 0 ){
+      
+	    counter++;
+      
+      
+    }
+    
+    if(counter == 4) counter=0;
+    
+    time_is_runing++;
+    
 
     #endif
     
 
-    #ifdef TEST_HPM
-
-    if( (resultRead = hpmReadResults(&pm2,&pm10)) != 0)
-      printf_("Counter %d result set uart: %d result set measure %d result read %d stop measure %d\n",time_is_runing, resultUartSet, resultStartMeasure, resultRead,resultStopMeasure);
-    printf_("PM2.5: %d PM10: %d\n",pm2,pm10);
-    time_is_runing++;
-
-    #endif
+    
     
     /* USER CODE END WHILE */
 

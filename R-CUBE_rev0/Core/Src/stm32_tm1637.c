@@ -51,7 +51,7 @@ void tm1637DisplayDecimal(int v, int displaySeparator)
     unsigned char digitArr[3];
     for (int i = 0; i < 3; ++i) {
         digitArr[i] = segmentMap[v % 10];
-        if (i == 2 && displaySeparator) {
+        if (i == 1 && displaySeparator) {
             digitArr[i] |= 1 << 7;
         }
         v /= 10;
