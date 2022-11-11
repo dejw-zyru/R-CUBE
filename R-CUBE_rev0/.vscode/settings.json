@@ -1,6 +1,9 @@
 {
+    "cortex-debug.armToolchainPath": "D:/ST/Toolchain/gcc-arm-none-eabi-10.3-2021.10/bin",
+    "cortex-debug.openocdPath": "D:/ST/openOCD/openocd-20211118/OpenOCD-20211118-0.11.0/bin/openocd.exe",
     "files.associations": {
         "gpio.h": "c",
-        "stm32l0xx_hal.h": "c"
+        "stm32l0xx_hal.h": "c",
+        "stm32hpmlib.h": "c"
     }
 }

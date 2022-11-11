@@ -1,0 +1,47 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "${workspaceRoot}",
+            "executable": "build/R-CUBE_rev0.elf",
+            "name": "Debug STM32L051 (openocd)",
+            "device": "STM32L051K8",
+            "svdFile": "D:/ST/svdFiles/STM32L0x1.svd",
+            "runToMain": true,
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32l0.cfg"
+            ]
+        }
+    ]
+}
+
+/*{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug STM32L051 (openocd)",
+            "cwd": "${workspaceFolder}",
+            "executable": "build/R-CUBE_rev0.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "device": "STM32L051K8",
+            "interface": "swd",
+            "svdFile": "D:/ST/svdFiles/STM32L0x1.svd",
+            "runToMain": true,
+            "configFiles": [
+                "target/stm32l0.cfg"
+            ]
+        }
+    ]
+}*/
