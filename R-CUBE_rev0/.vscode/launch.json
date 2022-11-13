@@ -17,7 +17,8 @@
             "configFiles": [
                 "interface/stlink.cfg",
                 "target/stm32l0.cfg"
-            ]
+            ],
+            "preLaunchTask": "Build all"
         }
     ]
 }

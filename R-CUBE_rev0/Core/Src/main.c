@@ -56,13 +56,14 @@
 volatile uint32_t time_is_runing;
 int pm2,pm10,resultUartSet,resultStartMeasure,resultRead,resultStopMeasure;
 int32_t temperature, humidity;
+volatile uint32_t counter=0;
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -101,7 +102,6 @@ int main(void)
   MX_USART2_UART_Init();
   MX_USART1_UART_Init();
   MX_I2C1_Init();
-  
   /* USER CODE BEGIN 2 */
 
   
@@ -118,7 +118,7 @@ int main(void)
   #endif
 
   #ifdef TEST_TM1637
-  volatile uint32_t counter=0;
+  
   tm1637Init();
   tm1637SetBrightness(3);
   tm1637DisplayDecimal(1234, 1);
@@ -132,6 +132,7 @@ int main(void)
     int32_t measurementValue[4];
   while (1)
   {
+    
     
     /*HAL_GPIO_TogglePin(LED_G_GPIO_Port,LED_G_Pin);
     HAL_Delay(250);
@@ -184,22 +185,22 @@ int main(void)
 
     (counter == 0) || (counter == 1) ? tm1637DisplayDecimal(measurementValue[counter], 0) : tm1637DisplayDecimal(measurementValue[counter], 1);
 
-    HAL_Delay(500);
+    //HAL_Delay(500);
     
 
-    if( (time_is_runing%4) == 0 ){
+    // if( (time_is_runing%4) == 0 ){
       
-	    counter++;
+	  //   counter++;
       
       
-    }
+    // }
     
-    if(counter == 4) counter=0;
+    // if(counter == 4) counter=0;
     
-    time_is_runing++;
+    // time_is_runing++;
     
 
-    #endif
+     #endif
     
 
     
@@ -263,7 +264,17 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+  //HAL_Delay(20); placzego ten HAL nie działa
+  if(GPIO_Pin == SWITCH_Pin){
+    
+    if( HAL_GPIO_ReadPin(SWITCH_GPIO_Port,SWITCH_Pin) == GPIO_PIN_RESET ){
+      HAL_GPIO_TogglePin(LED_G_GPIO_Port,LED_G_Pin);
+      counter++;
+    }
+    if(counter == 4) counter=0;
+  }
+}
 /* USER CODE END 4 */
 
 /**
